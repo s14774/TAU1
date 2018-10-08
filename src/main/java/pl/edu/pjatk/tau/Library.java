@@ -1,9 +1,10 @@
 package pl.edu.pjatk.tau;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Library {
-    private List<Book> books = new List<Book>;
+    private List<Book> books = new ArrayList<Book>();
     private int counter = 0;
 
     //Dodanie sprawdzenie czy ID nie istnieje obecnie w bazie.
@@ -44,5 +45,18 @@ public class Library {
             return;
 
         updatedBook.updateBook(book);
+    }
+
+    public void deleteBook(Book book){
+        if (book == null){
+            return;
+        }
+        if(books.contains(book)){
+            books.remove(book);
+        }
+    }
+
+    public void deleteBook(int ID){
+        this.deleteBook(books.get(ID));
     }
 }

@@ -1,10 +1,19 @@
 package pl.edu.pjatk.tau;
 
 public class Book {
-    int ID = 0;
-    String title;
-    String author;
-    BookCategories kategoria;
+    private int ID = 0;
+    private String title;
+    private String author;
+    private BookCategories kategoria;
+    private int ISBN;
+
+    public int getISBN() {
+        return ISBN;
+    }
+
+    public void setISBN(int ISBN) {
+        this.ISBN = ISBN;
+    }
 
     public int getID() {
         return ID;
@@ -39,12 +48,7 @@ public class Book {
     }
 
     public Book clone(){
-        Book book = new Book();
-        book.setID(this.ID);
-        book.setAuthor(this.author);
-        book.setTitle(this.getTitle());
-        book.setKategoria(this.getKategoria());
-        return book;
+        return new Book(this.ID, this.getTitle(), this.getAuthor(), this.getKategoria(), this.getISBN());
     }
 
     public Book(int ID, String title) {
@@ -58,16 +62,25 @@ public class Book {
         this.author = author;
     }
 
-    public Book(int ID, String title, String author, BookCategories kategoria) {
+    public Book(int ID, String title, String author, BookCategories category) {
+        this.ID = ID;
+        this.title = title;
+        this.author = author;
+        this.kategoria = category;
+    }
+
+    public Book(int ID, String title, String author, BookCategories kategoria, int ISBN) {
         this.ID = ID;
         this.title = title;
         this.author = author;
         this.kategoria = kategoria;
+        this.ISBN = ISBN;
     }
 
     public void updateBook(Book book){
         this.setTitle(book.getTitle());
         this.setAuthor(book.getAuthor());
         this.setKategoria(book.getKategoria());
+        this.setISBN(book.getISBN());
     }
 }
