@@ -7,9 +7,10 @@ public class Library {
     private List<Book> books = new ArrayList<Book>();
     private int counter = 0;
 
-    //Dodanie sprawdzenie czy ID nie istnieje obecnie w bazie.
     public void addBook(Book book) {
-        if (book.getID() == 0) {
+        if(books.contains(book))
+            return;
+        if(book.getID() == 0) {
             book.setID(++counter);
         }
         books.add(book);
@@ -25,26 +26,52 @@ public class Library {
         books.add(book);
     }
 
-    public void addBook(String title, String author, BookCategories kategoria) {
-        Book book = new Book(++counter, title, author, kategoria);
+    public void addBook(String title, String author, BookCategories category) {
+        Book book = new Book(++counter, title, author, category);
         books.add(book);
     }
 
     public Book getBook(int ID){
         for(Book book : books)
             if(book.getID() == ID)
-                return book.clone();
+                return book;
         return null;
     }
 
-    public void updateBook(int ID, Book book) {
-        Book updatedBook = this.getBook(ID);
-        if (updatedBook == null)
-            return;
-        if(book == null)
-            return;
+    public int getBookQuantity(){
+        return books.size();
+    }
 
-        updatedBook.updateBook(book);
+    public List<Book> getBooks(String title){
+        List<Book> returnBooks = new ArrayList<Book>();
+
+        if(title==null)
+            return returnBooks;
+        if(title.equals(""))
+            return returnBooks;
+
+        for(Book book : books)
+            if(book.getTitle().contains(title))
+                returnBooks.add(book);
+
+        return returnBooks;
+    }
+
+    public void updateBook(Book book){
+        if (book != null)
+            updateBook(book.getID(), book);
+    }
+
+    public void updateBook(int ID, Book book) {
+        if(book != null){
+            Book updatedBook = this.getBook(ID);
+            if (updatedBook == null)
+                return;
+            if(book == null)
+                return;
+
+            updatedBook.updateBook(book);
+        }
     }
 
     public void deleteBook(Book book){

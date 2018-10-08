@@ -1,18 +1,22 @@
 package pl.edu.pjatk.tau;
 
+import pl.edu.pjatk.tau.Helpers.IsbnHelper;
+
 public class Book {
     private int ID = 0;
     private String title;
     private String author;
-    private BookCategories kategoria;
-    private int ISBN;
+    private BookCategories category;
+    private String ISBN;
 
-    public int getISBN() {
+    public String getISBN() {
         return ISBN;
     }
 
-    public void setISBN(int ISBN) {
-        this.ISBN = ISBN;
+    public void setISBN(String ISBN) {
+        if(IsbnHelper.check(ISBN)){
+            this.ISBN = ISBN;
+        }
     }
 
     public int getID() {
@@ -28,7 +32,8 @@ public class Book {
     }
 
     public void setTitle(String title) {
-        this.title = title;
+        if(title!=null && ! title.equals(""))
+            this.title = title;
     }
 
     public String getAuthor() {
@@ -36,51 +41,78 @@ public class Book {
     }
 
     public void setAuthor(String author) {
-        this.author = author;
+        if(author!=null && ! author.equals(""))
+            this.author = author;
     }
 
-    public BookCategories getKategoria() {
-        return kategoria;
+    public BookCategories getCategoty() {
+        return category;
     }
 
-    public void setKategoria(BookCategories kategoria) {
-        this.kategoria = kategoria;
+    public void setCategoty(BookCategories kategoria) {
+        this.category = kategoria;
     }
 
     public Book clone(){
-        return new Book(this.ID, this.getTitle(), this.getAuthor(), this.getKategoria(), this.getISBN());
+        return new Book(this.ID, this.getTitle(), this.getAuthor(), this.getCategoty(), this.getISBN());
+    }
+
+    public Book() {
+    }
+
+    public Book(String title) {
+        this.setTitle(title);
     }
 
     public Book(int ID, String title) {
-        this.ID = ID;
-        this.title = title;
+        this.setID(ID);
+        this.setTitle(title);
+    }
+
+    public Book(String title, String author) {
+        this.setID(ID);
+        this.setTitle(title);
+        this.setAuthor(author);
+    }
+
+    public Book(String title, String author, BookCategories category) {
+        this.setTitle(title);
+        this.setAuthor(author);
+        this.setCategoty(category);
+    }
+
+    public Book(String title, String author, BookCategories category, String ISBN) {
+        this.setTitle(title);
+        this.setAuthor(author);
+        this.setCategoty(category);
+        this.setISBN(ISBN);
     }
 
     public Book(int ID, String title, String author) {
-        this.ID = ID;
-        this.title = title;
-        this.author = author;
+        this.setID(ID);
+        this.setTitle(title);
+        this.setAuthor(author);
     }
 
     public Book(int ID, String title, String author, BookCategories category) {
-        this.ID = ID;
-        this.title = title;
-        this.author = author;
-        this.kategoria = category;
+        this.setID(ID);
+        this.setTitle(title);
+        this.setAuthor(author);
+        this.setCategoty(category);
     }
 
-    public Book(int ID, String title, String author, BookCategories kategoria, int ISBN) {
-        this.ID = ID;
-        this.title = title;
-        this.author = author;
-        this.kategoria = kategoria;
-        this.ISBN = ISBN;
+    public Book(int ID, String title, String author, BookCategories category, String ISBN) {
+        this.setID(ID);
+        this.setTitle(title);
+        this.setAuthor(author);
+        this.setCategoty(category);
+        this.setISBN(ISBN);
     }
 
-    public void updateBook(Book book){
+    public void updateBook(Book book) {
         this.setTitle(book.getTitle());
         this.setAuthor(book.getAuthor());
-        this.setKategoria(book.getKategoria());
+        this.setCategoty(book.getCategoty());
         this.setISBN(book.getISBN());
     }
 }

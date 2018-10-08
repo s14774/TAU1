@@ -1,8 +1,7 @@
 package pl.edu.pjatk.tau;
 
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
 import org.junit.Test;
+import static org.junit.Assert.*;
 
 public class BookTest {
     @Test
@@ -26,14 +25,22 @@ public class BookTest {
         int ID = 1;
         BookCategories category = BookCategories.PIEKNA;
         Book book = new Book(ID, "", "", category);
-        assertTrue(book.getKategoria().equals(category));
+        assertTrue(book.getCategoty().equals(category));
     }
 
     @Test
-    public void BookConstructorIsbnTest() {
+    public void BookConstructorIsbn10Test() {
         int ID = 1;
-        BookCategories category = BookCategories.PIEKNA;
-        Book book = new Book(ID, "", "", category);
-        assertTrue(book.getKategoria().equals(category));
+        String ISBN = "0306406152";
+        Book book = new Book(ID, "", "", BookCategories.PIEKNA, ISBN);
+        assertEquals(ISBN,book.getISBN());
+    }
+
+    @Test
+    public void BookConstructorIsbnWrongLenTest() {
+        int ID = 1;
+        String ISBN = "6406152";
+        Book book = new Book(ID, "", "", BookCategories.PIEKNA, ISBN);
+        assertNotEquals(ISBN,book.getISBN());
     }
 }
