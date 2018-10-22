@@ -1,5 +1,6 @@
 package pl.edu.pjatk.tau;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,28 +14,31 @@ public class Library {
         if(book.getID() == 0) {
             book.setID(++counter);
         }
+        if(book.getAddTimeDisabled() == false)
+            book.setAddTimeNow();
+        if(book.getModifyTimeDisabled() == false)
+            book.setModifyTimeNow();
         books.add(book);
     }
 
     public void addBook(String title) {
-        Book book = new Book(++counter, title);
-        books.add(book);
+        addBook(new Book(++counter, title));
     }
 
     public void addBook(String title, String author) {
-        Book book = new Book(++counter, title, author);
-        books.add(book);
+        addBook(new Book(++counter, title, author));
     }
 
     public void addBook(String title, String author, BookCategories category) {
-        Book book = new Book(++counter, title, author, category);
-        books.add(book);
+        addBook(new Book(++counter, title, author, category));
     }
 
     public Book getBook(int ID){
         for(Book book : books)
-            if(book.getID() == ID)
+            if(book.getID() == ID){
+                book.setLastAccessTimeNow();
                 return book;
+            }
         return null;
     }
 
@@ -51,8 +55,10 @@ public class Library {
             return returnBooks;
 
         for(Book book : books)
-            if(book.getTitle().contains(title))
+            if(book.getTitle().contains(title)){
+                book.setLastAccessTimeNow();
                 returnBooks.add(book);
+            }
 
         return returnBooks;
     }
@@ -70,6 +76,8 @@ public class Library {
             if(book == null)
                 return;
 
+            if(book.getModifyTimeDisabled() == false)
+                book.setModifyTimeNow();
             updatedBook.updateBook(book);
         }
     }
@@ -85,5 +93,16 @@ public class Library {
 
     public void deleteBook(int ID){
         this.deleteBook(books.get(ID));
+    }
+
+    public List<Book> getBooksNotUsedMoreThanMonths(int months){
+        List<Book> bookList = new ArrayList<>();
+        if(months < 1) return bookList;
+        for(Book book : books)
+            if(book.getLastAccessTime().isBefore(LocalDate.now().minusMonths(months))){
+                book.setLastAccessTimeNow();
+                bookList.add(book);
+            }
+        return bookList;
     }
 }
