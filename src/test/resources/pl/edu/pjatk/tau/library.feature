@@ -8,8 +8,10 @@ Given we have library
 And we have book named <a>
 And we have book named <b>
 When we add them to library
-Then the result of searching <search> should be <count>
+Then the result of searching "<search>" should be <count>
 
 Examples:
-    |a|b|search|result|
+    |a|b|search|count|
     |Book1|Book2|Book|2|
+    |TestCos|TestNic|TestC|1|
+
