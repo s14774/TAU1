@@ -36,4 +36,17 @@ public class Stepdefs {
         assertEquals(arg2,library.getBooks(arg1).size());
     }
 
+    @Then("^the result of searching \"([^\"]*)\" should be Book named \"([^\"]*)\"$")
+    public void the_result_of_searching_should_be_Book_named(String arg1, String arg2) throws Exception {
+        // Write code here that turns the phrase above into concrete actions
+        throw new PendingException();
+    }
+
+    @Then("^the result of searching \"([^\"]*)\" shouldn't be Book named \"([^\"]*)\"$")
+    public void the_result_of_searching_shouldn_t_be_Book_named(String arg1, String arg2) throws Exception {
+        // Write code here that turns the phrase above into concrete actions
+        throw new PendingException();
+    }
+
+
 }

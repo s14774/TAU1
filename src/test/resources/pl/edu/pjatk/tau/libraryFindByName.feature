@@ -14,4 +14,3 @@ Examples:
     |a|b|search|count|
     |Book1|Book2|Book|2|
     |TestCos|TestNic|TestC|1|
-
