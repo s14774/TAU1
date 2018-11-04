@@ -38,14 +38,20 @@ public class Stepdefs {
 
     @Then("^the result of searching \"([^\"]*)\" should be Book named \"([^\"]*)\"$")
     public void the_result_of_searching_should_be_Book_named(String arg1, String arg2) throws Exception {
-        // Write code here that turns the phrase above into concrete actions
-        throw new PendingException();
+        System.err.println("1:"+arg1+" 2:"+arg2);
+        assertTrue(arg2.equals(library.getBooksByRegex(arg1).get(0).getTitle()));
     }
+
+    @Then("^library size should be (\\d+)$")
+    public void library_size_should_be(int arg1) throws Exception {
+        assertEquals(arg1,library.getBookQuantity());
+    }
+
 
     @Then("^the result of searching \"([^\"]*)\" shouldn't be Book named \"([^\"]*)\"$")
     public void the_result_of_searching_shouldn_t_be_Book_named(String arg1, String arg2) throws Exception {
-        // Write code here that turns the phrase above into concrete actions
-        throw new PendingException();
+        assertFalse(arg2.equals(library.getBooksByRegex(arg1).get(0).getTitle()));
+
     }
 
 

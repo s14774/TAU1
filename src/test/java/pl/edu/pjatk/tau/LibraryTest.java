@@ -60,6 +60,19 @@ public class LibraryTest {
     }
 
     @Test
+    public void LibraryGetBooksRegexTest(){
+        Library library = new Library();
+        Book book = new Book("TEST1");
+        library.addBook(book);
+        Book book2 = new Book("TEST2");
+        library.addBook(book2);
+        Book book3 = new Book("ANIA");
+        library.addBook(book3);
+        assertEquals(2,library.getBooksByRegex("^TEST.*$").size());
+        assertEquals(3,library.getBookQuantity());
+    }
+
+    @Test
     public void LibraryAddBooksTwiceTest(){
         Library library = new Library();
         Book book = new Book("TEST1");

@@ -8,5 +8,6 @@ Given we have library
 And we have book named "Ala w lesie"
 And we have book named "Lasy deszczowe"
 When we add them to library
-Then the result of searching "^[a-zA-Z]{4}.*$" should be Book named "Lasy deszczowe"
+Then library size should be 2
+Then the result of searching "Lasy.*" should be Book named "Lasy deszczowe"
 But the result of searching "^[a-zA-Z]{4}.*$" shouldn't be Book named "Ala w lesie"

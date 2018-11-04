@@ -63,6 +63,23 @@ public class Library {
         return returnBooks;
     }
 
+    public List<Book> getBooksByRegex(String title){
+        List<Book> returnBooks = new ArrayList<Book>();
+
+        if(title==null)
+            return returnBooks;
+        if(title.equals(""))
+            return returnBooks;
+
+        for(Book book : books)
+            if(book.getTitle().matches(title)){
+                book.setLastAccessTimeNow();
+                returnBooks.add(book);
+            }
+
+        return returnBooks;
+    }
+
     public void updateBook(Book book){
         if (book != null)
             updateBook(book.getID(), book);
