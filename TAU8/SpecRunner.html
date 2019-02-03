@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Jasmine Spec Runner v3.3.0</title>
+
+  <link rel="shortcut icon" type="image/png" href="lib/jasmine-3.3.0/jasmine_favicon.png">
+  <link rel="stylesheet" href="lib/jasmine-3.3.0/jasmine.css">
+  <script>console.log(window)</script> 
+  <script src="lib/jasmine-3.3.0/jasmine.js"></script>
+  <script src="lib/jasmine-3.3.0/jasmine-html.js"></script>
+  <script src="lib/jasmine-3.3.0/boot.js"></script>
+
+  <style>
+    .fixed (
+      display: fixed;
+      top: 0;
+      left: 0;
+      width: 100px;
+      height: 100px;
+    )
+  </style>
+</head>
+
+<body>
+  <script src="src/jquery-3.3.1.min.js"></script> 
+
+  <div class="fixed">
+    <input type="text" id="test">
+    <input type="text" id="test">
+  </div>
+
+  <script src="src/Addon.js"></script>
+  <script src="spec/AddonSpec.js"></script>
+</body>
+</html>
